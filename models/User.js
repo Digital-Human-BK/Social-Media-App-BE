@@ -41,6 +41,17 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+UserSchema.index(
+  { email: 1 },
+  {
+    unique: true,
+    collation: {
+      locale: 'en',
+      strength: 2,
+    },
+  }
+);
+
 const User = mongoose.model("User", UserSchema);
 
 export default User;
